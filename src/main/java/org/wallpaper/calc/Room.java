@@ -11,7 +11,7 @@ import java.util.List;
 @EqualsAndHashCode
 public class Room {
 
-    private final RoomDementions roomDementions;
+    private final RoomDimensions roomDimensions;
 
     @Getter
     private final String name;
@@ -23,7 +23,7 @@ public class Room {
         wallASquare = width * height;
         wallBSquare = length * height;
         ceilingSquare = length * width;
-        roomDementions = new RoomDementions(length, width, height);
+        roomDimensions = new RoomDimensions(length, width, height);
         name = String.format("%dx%dx%d", length, width, height);
     }
 
@@ -40,7 +40,7 @@ public class Room {
     }
 
     public Boolean isCubic() {
-        return roomDementions.length().equals(roomDementions.width())
-            && roomDementions.width().equals(roomDementions.height());
+        return roomDimensions.length().equals(roomDimensions.width())
+            && roomDimensions.width().equals(roomDimensions.height());
     }
 }

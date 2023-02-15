@@ -9,7 +9,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<Room> rooms = RoomsDementionsParser.parse("/Users/Pavlo_Avdyeyev/Downloads/wallpaper-calculator-main/sample-input.txt");
+        List<Room> rooms = RoomsDimensionsParser.parse("/Users/Pavlo_Avdyeyev/Downloads/wallpaper-calculator-main/sample-input.txt");
 
         Printer printer = new Printer(rooms);
 

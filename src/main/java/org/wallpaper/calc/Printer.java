@@ -2,6 +2,7 @@ package org.wallpaper.calc;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.wallpaper.calc.exceptions.NoSuchProcessorException;
 import org.wallpaper.calc.processors.CubicShapeRoomsProcessor;
 import org.wallpaper.calc.processors.DuplicatedRoomsProcessor;
 import org.wallpaper.calc.processors.Processor;
@@ -28,8 +29,15 @@ public class Printer {
     private final BiConsumer<CubicShapeRoomsProcessor, List<Room>> cubicShapeRoomsProcessorConsumer = (processor, rooms) -> {
         System.out.println(System.lineSeparator() +
             "-== rooms that have a cubic shape (order by total needed wallpaper descending) ==-");
-        processor.process(rooms).forEach(room -> System.out.println(
-            StringUtils.rightPad(room.getName(), 8, " ") + " | " + room.getRequiredSquare()));
+        System.out.println("""
+        ┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+        ┃ room dimensions ┃ needed wallpaper (square ft) ┃
+        ┣━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫""");
+        processor.process(rooms).forEach(room -> System.out.format("┃ %s ┃ %s ┃%s",
+            StringUtils.rightPad(room.getName(), 15, " "),
+            StringUtils.rightPad( room.getRequiredSquare().toString(), 28, " "),
+            System.lineSeparator()));
+        System.out.println("┗━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
     };
 
     private final BiConsumer<DuplicatedRoomsProcessor, List<Room>> duplicatedRoomsProcessorConsumer = (processor, rooms) -> {
@@ -45,7 +53,7 @@ public class Printer {
 
     public void print(Processor<?> processor) {
         BiConsumer printer = processors.get(processor.getClass());
-        if (null == printer) throw new RuntimeException("TODO: Create Exception");
+        if (null == printer) throw new NoSuchProcessorException(processor.getClass().toString());
         printer.accept(processor, roomList);
     }
 }

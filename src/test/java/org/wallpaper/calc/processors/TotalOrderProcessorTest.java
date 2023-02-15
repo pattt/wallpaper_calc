@@ -1,0 +1,23 @@
+package org.wallpaper.calc.processors;
+
+import org.junit.jupiter.api.Test;
+import org.wallpaper.calc.Room;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class TotalOrderProcessorTest {
+
+    List<Room> rooms = List.of(
+        new Room(1,2,3),
+        new Room(1,1,5)
+    );
+
+    @Test
+    void process() {
+        TotalOrderProcessor processor = new TotalOrderProcessor();
+        Integer actual = processor.process(rooms);
+        assertEquals(47, actual);
+    }
+}
