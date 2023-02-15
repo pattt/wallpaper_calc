@@ -1,5 +1,8 @@
 plugins {
-    id 'java'
+    id 'application'
+
+    // Apply GraalVM Native Image plugin
+    id 'org.graalvm.buildtools.native' version '0.9.20'
 }
 
 jar {
@@ -11,6 +14,17 @@ jar {
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+}
+
+application {
+    mainClass = 'org.wallpaper.calc.Main'
+}
+
+graalvmNative {
+    binaries.all {
+        resources.autodetect()
+    }
+    toolchainDetection = false
 }
 
 group 'org.wallpaper.calc'
