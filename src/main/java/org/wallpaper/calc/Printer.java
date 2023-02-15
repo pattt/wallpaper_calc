@@ -20,7 +20,7 @@ public class Printer {
     private final BiConsumer<TotalOrderProcessor, List<Room>> totalOrderProcessorConsumer = (processor, rooms) -> {
         Integer totalCount = processor.process(rooms);
         String result = String.format(
-            "%s-== The number of total square feet of wallpaper the company should order for all rooms is %d ==-",
+            "%s-== The number of total square feet of wallpaper the company should order for all rooms is \033[1m%d\033[0m ==-",
             System.lineSeparator(),
             totalCount);
         System.out.println(result);
