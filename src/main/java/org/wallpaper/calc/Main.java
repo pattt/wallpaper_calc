@@ -1,5 +1,6 @@
 package org.wallpaper.calc;
 
+import org.wallpaper.calc.exceptions.RoomDimensionsFormatException;
 import org.wallpaper.calc.processors.CubicShapeRoomsProcessor;
 import org.wallpaper.calc.processors.DuplicatedRoomsProcessor;
 import org.wallpaper.calc.processors.TotalOrderProcessor;
@@ -14,15 +15,19 @@ public class Main {
             System.exit(1);
         }
 
-        List<Room> rooms = RoomsDimensionsParser.parse(args[0]);
+        try {
+            List<Room> rooms = RoomsDimensionsParser.parse(args[0]);
 
-        Printer printer = new Printer(rooms);
+            Printer printer = new Printer(rooms);
 
-        List.of(
-            new TotalOrderProcessor(),
-            new CubicShapeRoomsProcessor(),
-            new DuplicatedRoomsProcessor()
-        ).forEach(printer::print);
+            List.of(
+                new TotalOrderProcessor(),
+                new CubicShapeRoomsProcessor(),
+                new DuplicatedRoomsProcessor()
+            ).forEach(printer::print);
+        } catch (RoomDimensionsFormatException e) {
+            System.err.println("File has a wrong format");
+        }
 
     }
 }
