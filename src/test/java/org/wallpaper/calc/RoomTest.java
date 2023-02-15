@@ -10,7 +10,6 @@ class RoomTest {
 
     private final Room room1 = new Room(1, 2, 3);
     private final Room room2 = new Room(1, 1, 5);
-
     private final Room cubicRoom = new Room(5, 5, 5);
 
     @Test

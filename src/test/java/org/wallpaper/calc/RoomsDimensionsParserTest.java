@@ -17,8 +17,7 @@ class RoomsDimensionsParserTest {
 
     @Test
     void parse() {
-
-        List<Room> expected = List.of(
+        var expected = List.of(
             new Room(1, 2, 3),
             new Room(1, 1, 5)
         );
@@ -27,13 +26,10 @@ class RoomsDimensionsParserTest {
             files.when(() -> Files.lines(Mockito.any(Path.class))).thenReturn(Stream.of("1x2x3", "1x1x5"));
             assertEquals(expected, RoomsDimensionsParser.parse(""));
         }
-
-
     }
 
     @Test
     void parseException() {
-
         try (MockedStatic<Files> files = Mockito.mockStatic(Files.class)) {
             files.when(() -> Files.lines(Mockito.any(Path.class))).thenReturn(Stream.of("1x2", "1x1x5"));
 

@@ -16,8 +16,8 @@ class TotalOrderProcessorTest {
 
     @Test
     void process() {
-        TotalOrderProcessor processor = new TotalOrderProcessor();
-        Integer actual = processor.process(rooms);
+        var processor = new TotalOrderProcessor();
+        var actual = processor.process(rooms);
         assertEquals(47, actual);
     }
 }

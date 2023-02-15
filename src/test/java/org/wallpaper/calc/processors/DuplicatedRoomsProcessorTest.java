@@ -18,11 +18,11 @@ class DuplicatedRoomsProcessorTest {
 
     @Test
     void process() {
-        List<Room> expected = List.of(
+        var expected = List.of(
             new Room(1, 1, 5)
         );
-        DuplicatedRoomsProcessor processor = new DuplicatedRoomsProcessor();
-        List<Room> actual = processor.process(rooms).toList();
+        var processor = new DuplicatedRoomsProcessor();
+        var actual = processor.process(rooms).toList();
         assertEquals(expected, actual);
     }
 }
