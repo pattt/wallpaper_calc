@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * calculates number of total square feet of wallpaper the company should order for all rooms
  */
-public class TotalOrderProcessor implements Processor<Integer>{
+public class TotalOrderProcessor implements Processor<Integer> {
 
     @Override
     public Integer process(List<Room> rooms) {

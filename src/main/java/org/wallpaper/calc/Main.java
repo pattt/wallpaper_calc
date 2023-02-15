@@ -9,7 +9,12 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<Room> rooms = RoomsDimensionsParser.parse("/Users/Pavlo_Avdyeyev/Downloads/wallpaper-calculator-main/sample-input.txt");
+        if (args.length != 1) {
+            System.err.println("No path argument provided");
+            System.exit(1);
+        }
+
+        List<Room> rooms = RoomsDimensionsParser.parse(args[0]);
 
         Printer printer = new Printer(rooms);
 

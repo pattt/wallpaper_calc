@@ -11,6 +11,6 @@ public class DuplicatedRoomsProcessor implements Processor<Stream<Room>> {
     @Override
     public Stream<Room> process(List<Room> rooms) {
         Set<Room> items = new HashSet<>();
-        return rooms.stream().filter(room -> !items.add(room))/*.forEach(System.out::println)*/;
+        return rooms.stream().filter(room -> !items.add(room));
     }
 }

@@ -30,12 +30,12 @@ public class Printer {
         System.out.println(System.lineSeparator() +
             "-== rooms that have a cubic shape (order by total needed wallpaper descending) ==-");
         System.out.println("""
-        ┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-        ┃ room dimensions ┃ needed wallpaper (square ft) ┃
-        ┣━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫""");
+            ┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+            ┃ room dimensions ┃ needed wallpaper (square ft) ┃
+            ┣━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫""");
         processor.process(rooms).forEach(room -> System.out.format("┃ %s ┃ %s ┃%s",
             StringUtils.rightPad(room.getName(), 15, " "),
-            StringUtils.rightPad( room.getRequiredSquare().toString(), 28, " "),
+            StringUtils.rightPad(room.getRequiredSquare().toString(), 28, " "),
             System.lineSeparator()));
         System.out.println("┗━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
     };
@@ -45,11 +45,11 @@ public class Printer {
         processor.process(rooms).map(Room::getName).forEach(System.out::println);
     };
 
-    private final Map<? super Processor<?>, ? extends BiConsumer<?,?>> processors = Map.of(
+    private final Map<? super Processor<?>, ? extends BiConsumer<?, ?>> processors = Map.of(
         TotalOrderProcessor.class, totalOrderProcessorConsumer,
         CubicShapeRoomsProcessor.class, cubicShapeRoomsProcessorConsumer,
         DuplicatedRoomsProcessor.class, duplicatedRoomsProcessorConsumer
-        );
+    );
 
     public void print(Processor<?> processor) {
         BiConsumer printer = processors.get(processor.getClass());

@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RoomsDimensionsParserTest {
 
@@ -19,13 +19,14 @@ class RoomsDimensionsParserTest {
     void parse() {
 
         List<Room> expected = List.of(
-            new Room(1,2,3),
-            new Room(1,1,5)
+            new Room(1, 2, 3),
+            new Room(1, 1, 5)
         );
 
-        MockedStatic<Files> files = Mockito.mockStatic(Files.class);
-        files.when(() -> Files.lines(Mockito.any(Path.class))).thenReturn(Stream.of("1x2x3", "1x1x5"));
-        assertEquals(expected, RoomsDimensionsParser.parse(""));
+        try( MockedStatic<Files> files = Mockito.mockStatic(Files.class) ) {
+            files.when(() -> Files.lines(Mockito.any(Path.class))).thenReturn(Stream.of("1x2x3", "1x1x5"));
+            assertEquals(expected, RoomsDimensionsParser.parse(""));
+        }
 
 
     }
@@ -33,7 +34,7 @@ class RoomsDimensionsParserTest {
     @Test
     void parseException() {
 
-        try(MockedStatic<Files> files = Mockito.mockStatic(Files.class)) {
+        try (MockedStatic<Files> files = Mockito.mockStatic(Files.class)) {
             files.when(() -> Files.lines(Mockito.any(Path.class))).thenReturn(Stream.of("1x2", "1x1x5"));
 
             RoomDimensionsFormatException exception = Assertions.assertThrows(RoomDimensionsFormatException.class,

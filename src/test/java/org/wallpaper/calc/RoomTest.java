@@ -2,18 +2,21 @@ package org.wallpaper.calc;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RoomTest {
 
-    private final Room room1 = new Room(1,2,3);
-    private final Room room2 = new Room(1,1,5);
+    private final Room room1 = new Room(1, 2, 3);
+    private final Room room2 = new Room(1, 1, 5);
 
-    private final Room cubicRoom = new Room(5,5,5);
+    private final Room cubicRoom = new Room(5, 5, 5);
+
     @Test
     void getSquare() {
-        assertEquals(22,room1.getSquare());
-        assertEquals(22,room2.getSquare());
+        assertEquals(22, room1.getSquare());
+        assertEquals(22, room2.getSquare());
     }
 
     @Test
